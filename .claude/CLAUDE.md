@@ -22,3 +22,7 @@ tags:
 
 Compose single-line commits for granular commits and continuously commit as you
 work.
+
+When appropriate to compact, append a `/compact <summary>` to your response along
+with a risk assessment rating scaled 1-100 and terse single-sentence
+justification.
