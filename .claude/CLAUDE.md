@@ -10,7 +10,7 @@ __cgxx: |
   #
   #
 
-ctime: 2026-09-29
+ctime: 2026-10-02
 title: CLAUDE.md
 description: "Repository instructions"
 tags:
@@ -23,6 +23,10 @@ tags:
 Compose single-line commits for granular commits and continuously commit as you
 work.
 
-When appropriate to compact, append a `/compact <summary>` to your response along
-with a risk assessment rating scaled 1-100 and terse single-sentence
-justification.
+When appropriate and worthwhile to compact, append the following
+newline-delimited items to your response:
+
+- A `/compact <summary>`
+- Appraisal rating scaled 1-100
+- Risk assessment rating scaled 1-100
+- Terse single-sentence justification.
