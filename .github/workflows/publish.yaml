@@ -17,6 +17,10 @@
 # token for a short-lived credential, so no NPM_TOKEN secret exists. The
 # package's npm Settings > Trusted Publisher must name this repository and
 # workflow with the stage publish permission.
+#
+# Bun installs and builds, but the publish itself stays on the npm CLI:
+# staged publishing and trusted publishing are npm features. Node is not in
+# mise.toml, so that one step runs it through `mise exec`.
 
 name: Publish
 
@@ -50,18 +54,18 @@ jobs:
               with:
                   persist-credentials: false
 
-            - name: Setup Node and NPM
+            - name: Setup Bun
               uses: jdx/mise-action@v4
 
-            - name: NPM Clean Install
-              run: npm ci
+            - name: Bun Frozen Install
+              run: bun install --frozen-lockfile
 
             - name: Check Version
               env:
                   TAG: ${{ github.ref_name }}
               run: |
-                  actual=$(node -p "require('./package.json').version")
+                  actual=$(bun -p "require('./package.json').version")
                   test "v$actual" = "$TAG" || { echo "::error::package.json is $actual, tag says $TAG"; exit 1; }
 
             - name: Publish
-              run: npm stage publish
+              run: mise exec node@24 -- npm stage publish
