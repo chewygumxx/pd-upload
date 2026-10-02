@@ -28,19 +28,19 @@ Learning how to upload to Proton Drive using their official client sdk
 [standard workflow](https://github.com/chewygumxx/.github#standard-workflow):
 commitlint, the header sync, generic lint and format checks for workflows,
 shell and zsh scripts, TOML, YAML and `.editorconfig`, and the metadata sync.
-This repository's own `npm run check` follows, against the commit the header
+This repository's own `bun run check` follows, against the commit the header
 sync pushed.
 
 ## Development
 
-- `npm run commit` composes a commit interactively.
-- `npm test` runs `src/**/*.test.ts` with `node --test`. Node 24 strips the
-  types itself, so `tsc` only typechecks, with `npm run typecheck`.
-- `npm run check` runs the checks CI runs: the typecheck, the build, the
+- `bun run commit` composes a commit interactively.
+- `bun run test` runs `src/**/*.test.ts` with `bun test`. Bun strips the
+  types itself, so `tsc` only typechecks, with `bun run typecheck`.
+- `bun run check` runs the checks CI runs: the typecheck, the build, the
   tests, Biome's format and lint checks, Markdown lint, the YAML checks
   (prettier, then yamllint with `@chewygumxx/yamllint-config`) and a check
   that rejects em dashes.
-- `npm run format` applies Biome formatting, and prettier's to YAML, which Biome
+- `bun run format` applies Biome formatting, and prettier's to YAML, which Biome
   does not read.
 
 The pre-commit hook runs the same checks on staged files. The commit-msg hook
@@ -48,13 +48,14 @@ runs commitlint.
 
 ## Publishing
 
-`npm run build` compiles `src/` to `dist/` with its declarations, and
+`bun run build` compiles `src/` to `dist/` with its declarations, and
 `prepack` runs it, so a tarball always holds a fresh build.
 
-To release, bump `version` in `package.json` and `package-lock.json`, commit,
-and push a matching `v*` tag. `.github/workflows/publish.yaml` runs the check,
-compares the tag with `version`, then stages the version with
-`npm stage publish`; approve it on npmjs.com to publish it.
+To release, bump `version` in `package.json` (`bun.lock` does not record it),
+commit, and push a matching `v*` tag. `.github/workflows/publish.yaml` runs
+the check, compares the tag with `version`, then stages the version with
+`npm stage publish`; approve it on npmjs.com to publish it. That one step
+still uses npm, as staged and trusted publishing are npm CLI features.
 
 Before the first release, add a Trusted Publisher in the package's npm
 settings that names this repository and the `publish.yaml` workflow with the
