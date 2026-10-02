@@ -12,12 +12,12 @@
 *.local.*
 
 node_modules/
+/dist/
+*.tgz
+
+# LLM
 /.herdr/
 /.claude/worktrees/
-
 /.remember/
 /.superpowers/
 
-/dist/
-
-*.tgz
