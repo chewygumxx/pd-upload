@@ -10,15 +10,15 @@
 
 version: 2
 updates:
-    - package-ecosystem: npm
+    - package-ecosystem: bun
       directory: /
       schedule:
           interval: weekly
       commit-message:
           prefix: build
       ignore:
-          # Its majors follow Node's; bumped by hand with the Node floor.
-          - dependency-name: "@types/node"
+          # Its majors follow Bun's; bumped by hand with the Bun floor.
+          - dependency-name: "@types/bun"
             update-types: ["version-update:semver-major"]
 
     - package-ecosystem: github-actions
