@@ -11,16 +11,16 @@
 
 set -e
 
-npx --no -- tsc
-npx --no -- biome check --staged --no-errors-on-unmatched
+bun run --bun tsc
+bun run --bun biome check --staged --no-errors-on-unmatched
 
 git diff -z --cached --name-only --diff-filter=ACMR -- '*.md' |
-    xargs -0 -r npx --no -- remark --frail --quiet --no-stdout
+    xargs -0 -r bun run --bun remark --frail --quiet --no-stdout
 
 yaml=$(git diff --cached --name-only --diff-filter=ACMR -- '*.yaml' '*.yml')
 if [ -n "$yaml" ]; then
     git diff -z --cached --name-only --diff-filter=ACMR -- '*.yaml' '*.yml' |
-        xargs -0 npx --no -- prettier --check
+        xargs -0 bun run --bun prettier --check
     git diff -z --cached --name-only --diff-filter=ACMR -- '*.yaml' '*.yml' |
         xargs -0 yamllint --strict
 fi
