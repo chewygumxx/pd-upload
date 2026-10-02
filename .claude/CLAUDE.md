@@ -20,8 +20,9 @@ tags:
 
 # CLAUDE.md
 
-Compose single-line commits for granular commits and continuously commit as you
-work.
+Continuously granularly commit as you work. Compose single-line commit messages
+whenever appropriate. If the granular commit does indeed warrant further
+context, include such within the commit message body.
 
 When appropriate and worthwhile to compact, append the following
 newline-delimited items to your response:
