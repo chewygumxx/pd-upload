@@ -16,8 +16,8 @@
 # Everything the repository runs that is not an npm package lives here, so
 # a checkout never depends on whatever the contributor happens to have on
 # `PATH`. npm packages (commitlint, Biome, remark, prettier, husky,
-# TypeScript) are pinned in `package.json` instead; together the two files
-# are the whole dependency surface. CI installs from this file via
+# TypeScript) are pinned in `package.json` and installed by Bun instead;
+# together the two files are the whole dependency surface. CI installs from this file via
 # `jdx/mise-action`, so the versions below are the ones CI runs.
 #
 # Backends are named explicitly rather than relying on the registry alias,
@@ -30,7 +30,7 @@ min_version = "2026.9.0"
 #
 # Runtimes
 #
-node = "24"
+bun = "1.4"
 
 #
 # Utilities
