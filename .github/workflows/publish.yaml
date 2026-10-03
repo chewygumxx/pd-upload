@@ -55,7 +55,7 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Bun
-              uses: jdx/mise-action@v4
+              uses: jdx/mise-action@v5
 
             - name: Bun Frozen Install
               run: bun install --frozen-lockfile
