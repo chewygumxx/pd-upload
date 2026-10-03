@@ -70,5 +70,8 @@
         "plugins": [
             "@chewygumxx/remark-preset"
         ]
+    },
+    "dependencies": {
+        "@protontech/drive-sdk": "^0.22.2"
     }
 }
